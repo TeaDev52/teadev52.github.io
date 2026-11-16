@@ -1,150 +1,78 @@
 <!doctype html>
 <html lang="ru">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#09090d">
-<title>voanechay — Portfolio</title>
+<title>NoBan — voanechay</title>
+<meta name="description" content="Страница проекта NoBan от voanechay.">
+<link rel="icon" href="https://github.com/voanechay42.png">
+<link rel="apple-touch-icon" href="https://github.com/voanechay42.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#09090e;--panel:#14141d;--panel2:#1b1b26;--text:#f5f3fb;--muted:#b0adbd;--accent:#b69aff;--line:rgba(255,255,255,.1);--shadow:0 18px 50px #0008}
-*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth;scroll-padding-top:85px}
-body{font:15px/1.7 Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;background-image:radial-gradient(#b69aff33 .7px,transparent .7px);background-size:27px 27px}
-body:after{content:"";position:fixed;width:480px;height:480px;right:-200px;top:-220px;background:#845be8;filter:blur(160px);opacity:.16;z-index:-1;pointer-events:none}
-a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}.container{width:min(1120px,91%);margin:auto}
-header{position:sticky;top:0;z-index:20;background:#09090edb;backdrop-filter:blur(18px);border-bottom:1px solid var(--line)}
-nav{height:72px;display:flex;align-items:center;justify-content:space-between}.logo{font-size:23px;font-weight:800;letter-spacing:-1px}.logo span{color:var(--accent)}
-.nav-right,.nav-links{display:flex;align-items:center;gap:22px}.nav-links{list-style:none}.nav-links a{font-size:13px;color:var(--muted)}.nav-links a:hover,.nav-links a.active{color:white}
-.nav-actions{display:flex;gap:8px}.lang,.menu{background:var(--panel2);color:white;border:1px solid var(--line);border-radius:10px;padding:8px 12px}.menu{display:none}
-.hero{min-height:580px;display:flex;flex-direction:column;justify-content:center;position:relative;padding:70px 0 100px}
-.status{display:flex;align-items:center;gap:9px;width:max-content;background:var(--panel);border:1px solid var(--line);border-radius:30px;padding:8px 13px;color:#d1c3ff;font-size:11px;margin-bottom:27px}
-.dot{width:8px;height:8px;background:#8de2a4;border-radius:50%;box-shadow:0 0 12px #8de2a4}
-h1{font-size:clamp(58px,9vw,98px);line-height:1.1;letter-spacing:-5px}.gradient{background:linear-gradient(100deg,#d5c5ff,#a78bfa,#76b7ff);background-clip:text;-webkit-background-clip:text;color:transparent}
-.hero-description{font-size:16px;color:var(--muted);max-width:630px;margin-top:22px;line-height:1.85}.hero-buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
-.btn{display:inline-flex;padding:13px 19px;border-radius:11px;border:1px solid var(--line);font-size:13px;font-weight:650;transition:.2s}.btn.primary{background:var(--accent);color:#171020;border-color:var(--accent);box-shadow:0 8px 28px #a78bfa35}.btn:hover{transform:translateY(-3px);box-shadow:0 12px 28px #0008}
-.hero-bottom{position:absolute;bottom:32px;color:#888496;font-size:11px;letter-spacing:2px}
-section{padding:82px 0;border-top:1px solid var(--line)}.section-top{margin-bottom:32px}.section-label{font-size:11px;color:var(--accent);font-weight:750;letter-spacing:2px;margin-bottom:10px}
-.section-title{font-size:clamp(31px,4.5vw,44px);letter-spacing:-1.8px;line-height:1.2}.section-description{font-size:14px;color:var(--muted);margin-top:11px;max-width:650px}
-.card{background:linear-gradient(145deg,#1a1a25,#111119);border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow);transition:.23s}
-.card:hover{transform:translateY(-5px);border-color:#b69aff77;box-shadow:0 22px 60px #000a,0 0 25px #a78bfa12}
-.about-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:15px}.about-main,.about-side{padding:27px}.about-main h3{font-size:21px}.about-main p{font-size:14px;color:var(--muted);margin-top:11px}
-.info-row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:13px}.info-row:last-child{border:0}.info-row span{color:var(--muted)}.info-row strong{text-align:right}
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-top:15px}.stat{padding:20px}.stat-number{font-size:29px;font-weight:800}.stat-title{font-size:12px;color:var(--muted)}
-.minecraft-heading{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:24px}.minecraft-badge{font-size:11px;color:#a8e8b7;border:1px solid #8de2a444;background:#8de2a411;border-radius:25px;padding:8px 12px}
-.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px}.filter{background:var(--panel);border:1px solid var(--line);border-radius:9px;padding:10px 15px;color:var(--muted);font-size:12px}.filter.active,.filter:hover{border-color:var(--accent);color:white;background:#b69aff1c}
-.achievement-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.achievement{padding:20px;min-height:170px;position:relative;overflow:hidden}.achievement[hidden]{display:none}
-.achievement-icon{width:47px;height:47px;display:grid;place-items:center;border-radius:14px;background:var(--ibg,#292039);border:1px solid var(--iborder,#694c9e);color:var(--icolor,#cbb5ff);margin-bottom:15px;box-shadow:inset 0 1px #ffffff15,0 7px 18px #0005}
-.achievement-icon svg,.mini-icon svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.achievement h3{font-size:14px;margin-bottom:5px}.achievement p{font-size:12px;color:var(--muted);line-height:1.7}.achievement-tag{display:inline-block;margin-top:10px;font-size:10px;color:var(--accent);letter-spacing:.6px}
-.team-block{margin-top:38px}.team-names{display:flex;flex-wrap:wrap;gap:10px;margin-top:15px}.team-name{padding:10px 14px;background:var(--panel2);border:1px solid var(--line);border-radius:9px;font-size:13px}
-.prime{display:flex;align-items:center;gap:20px;padding:24px;margin-top:26px;background:linear-gradient(110deg,#251b3a,#111119)}.prime .mini-icon{width:58px;height:58px;border-radius:15px;background:#b69aff20;display:grid;place-items:center;color:#d3c2ff}.prime h3{font-size:21px}.prime p{font-size:13px;color:var(--muted)}
-.closed-note{display:inline-flex;margin-top:15px;padding:7px 11px;border-radius:9px;background:#bb785015;border:1px solid #bb785033;color:#dfb8a3;font-size:11px}
-.languages,.games-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}.language,.game{text-align:center;padding:19px 10px}.mini-icon{width:45px;height:45px;display:grid;place-items:center;margin:0 auto 10px;border-radius:13px;background:var(--panel2);color:#cbb8ff}.language strong,.game strong{font-size:13px;display:block}.sub{font-size:11px;color:var(--muted)}
-.nick-list{display:grid;grid-template-columns:repeat(5,1fr);gap:11px}.nick{text-align:center;padding:16px 8px;font-size:13px;font-weight:700}.nick small{display:block;font-size:10px;color:var(--muted)}.main-nick{border-color:#b69aff88;background:#33264c55}
-.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}.project{padding:22px;min-height:195px;display:flex;flex-direction:column}.project h3{font-size:16px}.project p{font-size:12px;color:var(--muted);margin-top:7px}.coming{margin-top:auto;padding-top:17px;color:var(--accent);font-size:10px;letter-spacing:1px}
-.contact-card{padding:32px;background:linear-gradient(115deg,#251b3a,#111119);border:1px solid #b69aff44;border-radius:19px;box-shadow:var(--shadow)}.contact-card p{font-size:14px;color:var(--muted);margin:10px 0 20px}
-.contact-links{display:flex;gap:10px;flex-wrap:wrap}.contact-link{display:inline-flex;align-items:center;gap:9px;background:#ffffff08;border:1px solid var(--line);border-radius:10px;padding:12px 15px;color:white;font-size:12px}.contact-link:hover{border-color:var(--accent)}.contact-link svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8}
-footer{padding:24px 0;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.footer-inner{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}.footer-inner b{color:#d7c8ff}
-#top{position:fixed;right:23px;bottom:23px;width:44px;height:44px;border-radius:12px;background:#211b30;border:1px solid var(--line);color:white;opacity:0;pointer-events:none;transition:.2s}#top.show{opacity:1;pointer-events:auto}
-.reveal{opacity:0;transform:translateY(18px);transition:.6s}.reveal.visible{opacity:1;transform:none}
-@media(max-width:850px){.achievement-grid{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.projects-grid{grid-template-columns:repeat(2,1fr)}.languages,.games-grid{grid-template-columns:repeat(3,1fr)}.nick-list{grid-template-columns:repeat(3,1fr)}}
-@media(max-width:680px){nav{height:65px}.menu{display:block}.nav-links{display:none;position:absolute;top:65px;left:0;right:0;padding:18px 5%;background:#101018;flex-direction:column;align-items:flex-start}.nav-links.open{display:flex}.nav-right{gap:0}.hero{min-height:530px}.hero h1{letter-spacing:-3px}.about-grid{grid-template-columns:1fr}section{padding:65px 0}.minecraft-heading{align-items:flex-start;flex-direction:column}.projects-grid{grid-template-columns:1fr}}
-@media(max-width:430px){.achievement-grid{grid-template-columns:1fr}.languages,.games-grid{grid-template-columns:repeat(2,1fr)}.nick-list{grid-template-columns:repeat(2,1fr)}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header><div class="container"><nav>
-<a class="logo" href="#">voanechay<span>.</span></a>
-<div class="nav-right"><ul class="nav-links" id="navLinks">
-<li><a href="#about" data-t="navAbout">Обо мне</a></li><li><a href="#minecraft">Minecraft</a></li><li><a href="#languages" data-t="navSkills">Навыки</a></li><li><a href="#projects" data-t="navProjects">Проекты</a></li><li><a href="#games" data-t="navGames">Игры</a></li><li><a href="#contacts" data-t="navContacts">Контакты</a></li>
-</ul><div class="nav-actions"><button class="lang" id="lang">EN</button><button class="menu" id="menu">☰</button></div></div>
-</nav></div></header>
-<main>
-<div class="container"><div class="hero">
-<div class="status"><span class="dot"></span>PERSONAL DEVELOPER PORTFOLIO</div>
-<h1><span data-t="iam">Я</span> <span class="gradient">voanechay</span></h1>
-<p class="hero-description" data-t="hero">Разработчик, Minecraft-энтузиаст и человек, который любит создавать собственные проекты. Здесь собраны моя история, достижения и опыт.</p>
-<div class="hero-buttons"><a class="btn primary" href="#minecraft" data-t="achBtn">Мои достижения ↗</a><a class="btn" href="#about" data-t="aboutBtn">Обо мне ↓</a></div>
-<div class="hero-bottom">CREATING · EXPERIMENTING · DEVELOPING</div>
-</div></div>
+<div class="glow glow-a"></div><div class="glow glow-b"></div>
+<header class="topbar">
+  <a class="brand" href="#"><span class="brand-logo">N</span>NoBan</a>
+  <div class="top-right"><span class="online-dot"></span><span>PROJECT PAGE</span><a href="https://github.com/voanechay42/NoBan" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+</header>
+<main class="page">
+  <section class="hero">
+    <div class="identity">
+      <img class="project-avatar" src="https://github.com/voanechay42.png" alt="GitHub avatar">
+      <div><div class="eyebrow">PROJECT <i></i> 001</div><h1>NoBan</h1><p>Проект <b class="gradient">voanechay</b></p></div>
+    </div>
+    <div class="download-wrap">
+      <button class="download" id="downloadButton" aria-expanded="false" aria-haspopup="true">
+        <svg viewBox="0 0 24 24"><path d="M12 3v11m0 0 4-4m-4 4-4-4M4 17v3h16v-3"/></svg>
+        <span id="downloadLabel">Версии</span><span class="chevron">⌄</span>
+      </button>
+      <div class="version-menu" id="versionMenu" hidden>
+        <div class="menu-title">Выберите версию</div><div id="versionList"></div>
+        <div class="menu-note">Последняя версия будет отмечена автоматически</div>
+      </div>
+    </div>
+  </section>
 
-<section id="about"><div class="container reveal">
-<div class="section-top"><div class="section-label">01 / ABOUT ME</div><h2 class="section-title" data-t="aboutTitle">Кто я такой?</h2><p class="section-description" data-t="aboutSub">Немного обо мне, моей деятельности и интересах.</p></div>
-<div class="about-grid"><div class="card about-main"><h3 data-t="hello">Привет, рад видеть тебя!</h3><p data-t="about1">Я занимаюсь разработкой собственных проектов, изучаю программирование и экспериментирую с различными технологиями.</p><p data-t="about2">Значительная часть моей истории связана с Minecraft: PvP, серверами, разработкой плагинов, модификаций и собственными игровыми проектами.</p><p data-t="about3">Для меня важно не просто пользоваться чужими решениями, а создавать что-то своё.</p></div>
-<div class="card about-side"><div class="info-row"><span data-t="mainNick">Основной ник</span><strong>voanechay</strong></div><div class="info-row"><span data-t="activity">Деятельность</span><strong>Developer</strong></div><div class="info-row"><span data-t="focus">Основное направление</span><strong>Minecraft</strong></div><div class="info-row"><span data-t="prime">Мой прайм</span><strong>2022–2025</strong></div><div class="info-row"><span data-t="status">Статус</span><strong>Developing</strong></div></div></div>
-<div class="stats"><div class="card stat"><div class="stat-number">10K+</div><div class="stat-title" data-t="hours">Часов в Minecraft</div></div><div class="card stat"><div class="stat-number">600×600</div><div class="stat-title" data-t="base">Размер базы</div></div><div class="card stat"><div class="stat-number">HT3</div><div class="stat-title" data-t="pvp">PvP уровень</div></div><div class="card stat"><div class="stat-number">90h</div><div class="stat-title" data-t="voice">В войсе</div></div></div>
-</div></section>
+  <div class="columns">
+    <section class="main">
+      <nav class="tabs"><button class="tab active" data-tab="about">Описание</button><button class="tab" data-tab="versions">Версии</button></nav>
+      <section class="panel" id="aboutPanel">
+        <div class="panel-head"><div><div class="kicker">OVERVIEW</div><h2>О проекте</h2></div><span class="panel-mark">N</span></div>
+        <h3 class="lead">NoBan — проект, над которым я работаю.</h3>
+        <p class="description">Здесь будет собрана основная информация о проекте, его обновлениях и опубликованных версиях. Страница будет обновляться вместе с развитием проекта.</p>
+        <div class="notice"><span class="notice-icon">✦</span><div><strong>Страница проекта</strong><small>Информация о проекте и ссылки на официальные ресурсы.</small></div></div>
+        <div class="divider"></div>
+        <div class="subhead"><h3>Информация</h3><span>DETAILS</span></div>
+        <div class="details">
+          <div><small>Разработчик</small><b>voanechay</b></div>
+          <div><small>Исходный код</small><b>GitHub</b></div>
+          <div><small>Статус</small><b class="status">В разработке</b></div>
+        </div>
+      </section>
+      <section class="panel" id="versionsPanel" hidden>
+        <div class="panel-head"><div><div class="kicker">RELEASES</div><h2>Версии</h2></div><span class="panel-mark">↗</span></div>
+        <div id="fullVersionList"></div>
+      </section>
+      <footer><span>© <span id="year"></span> voanechay</span><span>Designed with care <b>✦</b></span></footer>
+    </section>
 
-<section id="minecraft"><div class="container reveal">
-<div class="minecraft-heading"><div><div class="section-label">02 / MINECRAFT</div><h2 class="section-title" data-t="achTitle">Мои достижения</h2><p class="section-description" data-t="achSub">История, игровые рекорды, опыт и незабываемые моменты.</p></div><div class="minecraft-badge">MINECRAFT HISTORY</div></div>
-<div class="filters"><button class="filter active" data-filter="all" data-t="all">Все достижения</button><button class="filter" data-filter="pvp">PvP</button><button class="filter" data-filter="servers" data-t="servers">Сервера</button><button class="filter" data-filter="history" data-t="history">История</button></div>
-<div class="achievement-grid">
-<article class="card achievement" data-category="servers"><div class="achievement-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="6" rx="1.5"/><rect x="3" y="14" width="18" height="6" rx="1.5"/><path d="M7 7h.01M7 17h.01M11 7h6M11 17h6"/></svg></div><h3 data-t="a1">Самая большая база в СНГ</h3><p data-t="a1p">Личная база размером 600 × 600 блоков.</p><span class="achievement-tag">600 × 600 BLOCKS</span></article>
-<article class="card achievement" data-category="pvp"><div class="achievement-icon" style="--ibg:#302020;--iborder:#773d50;--icolor:#ff9cba"><svg viewBox="0 0 24 24"><path d="m14 5 5 5M4 20l6-6M8 4l12 12M4 8l12 12M3 21l5-5M16 3l5 5"/></svg></div><h3 data-t="a2">Топ в PvP — HT3</h3><p data-t="a2p">Один из главных показателей моего игрового скилла.</p><span class="achievement-tag">PVP · HT3</span></article>
-<article class="card achievement" data-category="history"><div class="achievement-icon" style="--ibg:#292039;--iborder:#694c9e;--icolor:#d1aaff"><svg viewBox="0 0 24 24"><path d="M12 20s-8-4.5-8-10a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.5-8 10-8 10Z"/></svg></div><h3>GlentLand & HiTime</h3><p data-t="a3p">Два любимых и незабываемых проекта в моей игровой истории.</p><span class="achievement-tag">MEMORIES</span></article>
-<article class="card achievement" data-category="servers"><div class="achievement-icon" style="--ibg:#19303a;--iborder:#31768a;--icolor:#79d8ed"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></div><h3 data-t="a4">18 серверов</h3><p data-t="a4p">В прошлом крашнул 18 различных серверов. Это часть моей игровой истории.</p><span class="achievement-tag">SERVER HISTORY</span></article>
-<article class="card achievement" data-category="servers"><div class="achievement-icon" style="--ibg:#203629;--iborder:#427c59;--icolor:#9be6b0"><svg viewBox="0 0 24 24"><path d="M12 3c-4 0-7 3-7 7s3 7 7 7c3 0 5-2 5-5 0-2-1-3-3-3-1 0-2 1-2 2M12 17v4M8 21h8"/></svg></div><h3 data-t="a5">Собственный супрессор</h3><p data-t="a5p">Создал собственный супрессор. Администратор предлагал 8 000 рублей за демонстрацию.</p><span class="achievement-tag">ENGINEERING</span></article>
-<article class="card achievement" data-category="history"><div class="achievement-icon" style="--ibg:#242b3c;--iborder:#485e9b;--icolor:#9ebaff"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8ZM20 8v6M23 11h-6"/></svg></div><h3 data-t="a6">Лучшие тиммейты</h3><p data-t="a6p">Люди, с которыми связано множество игровых воспоминаний.</p><span class="achievement-tag">TEAMWORK</span></article>
-<article class="card achievement" data-category="servers"><div class="achievement-icon" style="--ibg:#202b39;--iborder:#42638d;--icolor:#9dc9ff"><svg viewBox="0 0 24 24"><path d="m14 6 4-4 4 4-4 4M3 21l8-8M13 7l4 4M4 4l5 5M3 3l6 6"/></svg></div><h3 data-t="a7">Исправление бага в WorldGuard</h3><p data-t="a7p">Создал плагин для исправления бага дюпа растительности с использованием кровати в WorldGuard.</p><span class="achievement-tag">PLUGIN DEVELOPMENT</span></article>
-<article class="card achievement" data-category="servers"><div class="achievement-icon" style="--ibg:#362d20;--iborder:#94723e;--icolor:#f4c879"><svg viewBox="0 0 24 24"><path d="M12 3 3 7v5c0 5 4 8 9 9 5-1 9-4 9-9V7l-9-4Z"/><path d="m9 12 2 2 4-4"/></svg></div><h3 data-t="a8">60+ банов</h3><p data-t="a8p">Более 60 банов на одном сервере. Довольно необычная часть истории.</p><span class="achievement-tag">SERVER HISTORY</span></article>
-<article class="card achievement" data-category="pvp"><div class="achievement-icon" style="--ibg:#39232d;--iborder:#a34e6b;--icolor:#ff9ab8"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M22 12h-3M12 22v-3M2 12h3"/></svg></div><h3 data-t="a9">Таргет 24/7</h3><p data-t="a9p">Постоянный таргет, после которого целый клан навсегда покинул сервер.</p><span class="achievement-tag">PVP HISTORY</span></article>
-<article class="card achievement" data-category="history"><div class="achievement-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M8 10v4M6 12h4M16 11h.01M18 14h.01"/></svg></div><h3 data-t="a10">10 000+ часов</h3><p data-t="a10p">Суммарное время, проведённое в Minecraft.</p><span class="achievement-tag">GAMING EXPERIENCE</span></article>
-<article class="card achievement" data-category="history"><div class="achievement-icon" style="--ibg:#193342;--iborder:#367eaa;--icolor:#8bd9ff"><svg viewBox="0 0 24 24"><path d="M4 14v-4a8 8 0 0 1 16 0v4M4 14a2 2 0 0 0 2 2h2v-6H6a2 2 0 0 0-2 2ZM20 14a2 2 0 0 1-2 2h-2v-6h2a2 2 0 0 1 2 2ZM16 19c-1 1-2 1-4 1"/></svg></div><h3 data-t="a11">90 часов в войсе</h3><p data-t="a11p">Мой рекорд по времени в голосовом чате с тиммейтами.</p><span class="achievement-tag">90 HOURS</span></article>
-</div>
-<div class="team-block"><div class="section-label">MY TEAM</div><h3 style="font-size:21px" data-t="teamTitle">Лучшие тиммейты</h3><p class="section-description" data-t="teamSub">Люди, с которыми связана часть незабываемых игровых моментов.</p><div class="team-names"><span class="team-name">OCHOBA_DST228</span><span class="team-name">tooooka5</span><span class="team-name">paukyt805</span></div></div>
-<div class="card prime"><div class="mini-icon"><svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9L12 3Z"/></svg></div><div><div class="section-label">MY PRIME</div><h3>2022 — 2025</h3><p data-t="primeText">Мой прайм. Период, который запомнился больше всего.</p></div></div>
-<div class="closed-note" data-t="closed">● Упомянутые серверные проекты уже закрыты.</div>
-</div></section>
-
-<section id="languages"><div class="container reveal"><div class="section-top"><div class="section-label">03 / TECHNOLOGIES</div><h2 class="section-title" data-t="languagesTitle">Языки программирования</h2><p class="section-description" data-t="languagesSub">Языки и технологии, с которыми я работал и продолжаю работать.</p></div>
-<div class="languages">
-<div class="card language"><div class="mini-icon"><svg viewBox="0 0 24 24"><path d="M7 3h10M8 3v5l-4 9a3 3 0 0 0 3 4h10a3 3 0 0 0 3-4l-4-9V3"/></svg></div><strong>Java</strong><div class="sub">Programming</div></div>
-<div class="card language"><div class="mini-icon"><svg viewBox="0 0 24 24"><path d="m8 5-5 7 5 7M16 5l5 7-5 7M14 3l-4 18"/></svg></div><strong>JavaScript</strong><div class="sub">Programming</div></div>
-<div class="card language"><div class="mini-icon"><svg viewBox="0 0 24 24"><path d="M12 3c-4 0-7 3-7 7s3 7 7 7c3 0 5-2 5-5-1-2-4-2-5 0M12 17v4M8 21h8"/></svg></div><strong>Python</strong><div class="sub">Programming</div></div>
-<div class="card language"><div class="mini-icon"><svg viewBox="0 0 24 24"><path d="m8 5-5 7 5 7M16 5l5 7-5 7M14 3l-4 18"/></svg></div><strong>C++</strong><div class="sub">Programming</div></div>
-<div class="card language"><div class="mini-icon"><svg viewBox="0 0 24 24"><path d="m4 17 6-10 6 10M7 13h6M17 7h3M18 7v10"/></svg></div><strong>Bash</strong><div class="sub">Shell</div></div>
-</div></div></section>
-
-<section id="nicknames"><div class="container reveal"><div class="section-top"><div class="section-label">04 / IDENTITIES</div><h2 class="section-title" data-t="nickTitle">Мои никнеймы</h2><p class="section-description" data-t="nickSub">Никнеймы, под которыми меня можно было встретить на разных площадках.</p></div>
-<div class="nick-list"><div class="card nick main-nick">voanechay<small>MAIN ACCOUNT</small></div><div class="card nick">2sexual<small>ALIAS</small></div><div class="card nick">TeaDev<small>ALIAS</small></div><div class="card nick">voanechay52<small>ALIAS</small></div><div class="card nick">Testov<small>ALIAS</small></div></div></div></section>
-
-<section id="projects"><div class="container reveal"><div class="section-top"><div class="section-label">05 / PROJECTS</div><h2 class="section-title" data-t="projectsTitle">Мои проекты</h2><p class="section-description" data-t="projectsSub">Разработки, эксперименты и идеи. Новые проекты появятся здесь совсем скоро.</p></div>
-<div class="projects-grid">
-<div class="card project"><div class="mini-icon" style="margin:0 0 16px"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v4m0 8v4M4 12h4m8 0h4M7 7l3 3m4 4 3 3"/></svg></div><h3>NoBan</h3><p data-t="noban">Утилита для удобного доступа к сайтам, которые могут быть недоступны в отдельных сетях. Скоро на GitHub.</p><div class="coming" data-t="soon">◉ СКОРО БУДЕТ</div></div>
-<div class="card project"><div class="mini-icon" style="margin:0 0 16px"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M8 9h8M8 13h5"/></svg></div><h3>Project #02</h3><p data-t="placeholder">Информация о проекте будет опубликована позже.</p><div class="coming" data-t="soon">◉ СКОРО БУДЕТ</div></div>
-<div class="card project"><div class="mini-icon" style="margin:0 0 16px"><svg viewBox="0 0 24 24"><path d="m12 3 8 4v10l-8 4-8-4V7l8-4Zm-8 4 8 4 8-4m-8 4v10"/></svg></div><h3>Project #03</h3><p data-t="placeholder">Информация о проекте будет опубликована позже.</p><div class="coming" data-t="soon">◉ СКОРО БУДЕТ</div></div>
-</div></div></section>
-
-<section id="games"><div class="container reveal"><div class="section-top"><div class="section-label">06 / FAVORITES</div><h2 class="section-title" data-t="gamesTitle">Любимые игры</h2><p class="section-description" data-t="gamesSub">Игры, в которые я люблю играть.</p></div>
-<div class="games-grid">
-<div class="card game"><div class="mini-icon"><svg viewBox="0 0 40 40"><path d="M7 7h26v26H7zM7 15h26M15 7v8M25 15v18M7 25h18"/></svg></div><strong>Minecraft</strong><div class="sub">Sandbox</div></div>
-<div class="card game"><div class="mini-icon"><svg viewBox="0 0 40 40"><path d="M8 8h24v24H8zM8 8l24 24M32 8 8 32"/></svg></div><strong>Roblox</strong><div class="sub">Platform</div></div>
-<div class="card game"><div class="mini-icon"><svg viewBox="0 0 40 40"><path d="M6 11h28l-3 21H9L6 11Z"/><path d="M13 17v9m-4-4h9M25 19h.1M30 25h.1"/></svg></div><strong>Dota 2</strong><div class="sub">MOBA</div></div>
-<div class="card game"><div class="mini-icon"><svg viewBox="0 0 40 40"><path d="M20 4 34 12v16l-14 8L6 28V12L20 4Z"/><path d="m20 4 2 15-16-7m16 7 12-7m-12 7-2 17"/></svg></div><strong>Fortnite</strong><div class="sub">Battle Royale</div></div>
-<div class="card game"><div class="mini-icon"><svg viewBox="0 0 40 40"><path d="M5 25h30l-3-12H8L5 25Z"/><path d="M12 25v5h16v-5M14 18h.1M20 18h.1M26 18h.1"/></svg></div><strong>GTA V</strong><div class="sub">Open World</div></div>
-</div></div></section>
-
-<section id="contacts"><div class="container reveal"><div class="contact-card"><div class="section-label">07 / CONTACTS</div><h2 class="section-title" data-t="contactTitle">Давайте знакомиться.</h2><p data-t="contactSub">Мои профили и площадки, где можно следить за проектами и обновлениями.</p>
-<div class="contact-links">
-<a class="contact-link" href="https://modrinth.com/user/voanechay52" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M5 5h14v14H5zM9 9h6v6H9z"/></svg>Modrinth ↗</a>
-<a class="contact-link" href="https://github.com/TeaDev52" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24"><path d="M9 19c-4 1-4-2-6-2m12 4v-3.5c0-1 .1-1.5-.5-2 3-.3 6-1.5 6-6A4.7 4.7 0 0 0 19 6c.1-1-.1-2-1-3 0 0-1.5-.5-4 1.5a13 13 0 0 0-6 0C5.5 2.5 4 3 4 3c-.9 1-.9 2-.8 3A4.7 4.7 0 0 0 2 9.5c0 4.5 3 5.7 6 6-.6.5-.7 1.2-.7 2V21"/></svg>GitHub ↗</a>
-<button class="contact-link" id="discord"><svg viewBox="0 0 24 24"><path d="M8 7c2-1 6-1 8 0l2 10c-2 2-4 2-6 2s-4 0-6-2L8 7Z"/><path d="M8 8 5 6m11 2 3-2M9 13h.01M15 13h.01"/></svg><span>Discord: voanechay_</span> ⧉</button>
-</div></div></div></section>
+    <aside class="sidebar">
+      <section class="side-card">
+        <div class="side-heading"><span>↗</span><h3>Ссылки</h3></div>
+        <a class="side-link" href="https://github.com/voanechay42/NoBan" target="_blank" rel="noreferrer"><i class="gh">GH</i>Исходный код<b>↗</b></a>
+        <a class="side-link" href="https://github.com/voanechay42/NoBan/releases" target="_blank" rel="noreferrer"><i>↓</i>Страница релизов<b>↗</b></a>
+      </section>
+      <section class="side-card">
+        <div class="side-heading"><span>⌘</span><h3>Автор</h3></div>
+        <a class="author" href="https://github.com/voanechay42" target="_blank" rel="noreferrer">
+          <img src="https://github.com/voanechay42.png" alt=""><span><b>voanechay</b><small>GitHub developer</small></span><strong>↗</strong>
+        </a>
+        <p class="author-note">Создаю собственные проекты и изучаю разработку.</p>
+      </section>
+    </aside>
+  </div>
 </main>
-<footer><div class="container footer-inner"><span>© 2026 <b>voanechay</b>. All rights reserved.</span><span>Designed & developed by voanechay.</span></div></footer>
-<button id="top" aria-label="Back to top">↑</button>
-<script>
-const dict={
-ru:{navAbout:"Обо мне",navSkills:"Навыки",navProjects:"Проекты",navGames:"Игры",navContacts:"Контакты",iam:"Я",hero:"Разработчик, Minecraft-энтузиаст и человек, который любит создавать собственные проекты. Здесь собраны моя история, достижения и опыт.",achBtn:"Мои достижения ↗",aboutBtn:"Обо мне ↓",aboutTitle:"Кто я такой?",aboutSub:"Немного обо мне, моей деятельности и интересах.",hello:"Привет, рад видеть тебя!",about1:"Я занимаюсь разработкой собственных проектов, изучаю программирование и экспериментирую с различными технологиями.",about2:"Значительная часть моей истории связана с Minecraft: PvP, серверами, разработкой плагинов, модификаций и собственными игровыми проектами.",about3:"Для меня важно не просто пользоваться чужими решениями, а создавать что-то своё.",mainNick:"Основной ник",activity:"Деятельность",focus:"Основное направление",prime:"Мой прайм",status:"Статус",hours:"Часов в Minecraft",base:"Размер базы",pvp:"PvP уровень",voice:"В войсе",achTitle:"Мои достижения",achSub:"История, игровые рекорды, опыт и незабываемые моменты.",all:"Все достижения",servers:"Сервера",history:"История",a1:"Самая большая база в СНГ",a1p:"Личная база размером 600 × 600 блоков.",a2:"Топ в PvP — HT3",a2p:"Один из главных показателей моего игрового скилла.",a3p:"Два любимых и незабываемых проекта в моей игровой истории.",a4:"18 серверов",a4p:"В прошлом крашнул 18 различных серверов. Это часть моей игровой истории.",a5:"Собственный супрессор",a5p:"Создал собственный супрессор. Администратор предлагал 8 000 рублей за демонстрацию.",a6:"Лучшие тиммейты",a6p:"Люди, с которыми связано множество игровых воспоминаний.",a7:"Исправление бага в WorldGuard",a7p:"Создал плагин для исправления бага дюпа растительности с использованием кровати в WorldGuard.",a8:"60+ банов",a8p:"Более 60 банов на одном сервере. Довольно необычная часть истории.",a9:"Таргет 24/7",a9p:"Постоянный таргет, после которого целый клан навсегда покинул сервер.",a10:"10 000+ часов",a10p:"Суммарное время, проведённое в Minecraft.",a11:"90 часов в войсе",a11p:"Мой рекорд по времени в голосовом чате с тиммейтами.",teamTitle:"Лучшие тиммейты",teamSub:"Люди, с которыми связана часть незабываемых игровых моментов.",primeText:"Мой прайм. Период, который запомнился больше всего.",closed:"● Упомянутые серверные проекты уже закрыты.",languagesTitle:"Языки программирования",languagesSub:"Языки и технологии, с которыми я работал и продолжаю работать.",nickTitle:"Мои никнеймы",nickSub:"Никнеймы, под которыми меня можно было встретить на разных площадках.",projectsTitle:"Мои проекты",projectsSub:"Разработки, эксперименты и идеи. Новые проекты появятся здесь совсем скоро.",noban:"Утилита для удобного доступа к сайтам, которые могут быть недоступны в отдельных сетях. Скоро на GitHub.",soon:"◉ СКОРО БУДЕТ",placeholder:"Информация о проекте будет опубликована позже.",gamesTitle:"Любимые игры",gamesSub:"Игры, в которые я люблю играть.",contactTitle:"Давайте знакомиться.",contactSub:"Мои профили и площадки, где можно следить за проектами и обновлениями."},
-en:{navAbout:"About",navSkills:"Skills",navProjects:"Projects",navGames:"Games",navContacts:"Contacts",iam:"I'm",hero:"Developer, Minecraft enthusiast, and someone who loves building personal projects. This is where I share my story, achievements, and experience.",achBtn:"My achievements ↗",aboutBtn:"About me ↓",aboutTitle:"Who am I?",aboutSub:"A little about me, what I do, and my interests.",hello:"Hey, glad to see you!",about1:"I build personal projects, learn programming, and experiment with different technologies.",about2:"A big part of my story is connected with Minecraft: PvP, servers, plugin and mod development, and my own game projects.",about3:"I don't just want to use other people's solutions — I want to create my own.",mainNick:"Main nickname",activity:"Activity",focus:"Main focus",prime:"My prime",status:"Status",hours:"Hours in Minecraft",base:"Base size",pvp:"PvP level",voice:"In voice chat",achTitle:"My achievements",achSub:"History, gaming records, experience, and unforgettable moments.",all:"All achievements",servers:"Servers",history:"History",a1:"Largest base in the CIS",a1p:"Personal base measuring 600 × 600 blocks.",a2:"PvP — HT3",a2p:"One of the main indicators of my in-game skill.",a3p:"Two favorite and unforgettable projects in my gaming history.",a4:"18 servers",a4p:"I previously crashed 18 different servers. Part of my gaming history.",a5:"Custom suppressor",a5p:"Created my own suppressor. An admin offered 8,000 RUB to see a demo.",a6:"Best teammates",a6p:"People connected with many of my gaming memories.",a7:"WorldGuard bug fix",a7p:"Created a plugin to fix a vegetation duplication bug involving a bed in WorldGuard.",a8:"60+ bans",a8p:"More than 60 bans on one server. A rather unusual part of my history.",a9:"24/7 targeting",a9p:"Constant targeting, after which an entire clan permanently left the server.",a10:"10,000+ hours",a10p:"Total time spent playing Minecraft.",a11:"90 hours in voice chat",a11p:"My personal record for time spent in voice chat with teammates.",teamTitle:"Best teammates",teamSub:"People who shared many unforgettable gaming moments with me.",primeText:"My prime — the period I remember the most.",closed:"● The server projects mentioned here are now closed.",languagesTitle:"Programming languages",languagesSub:"Languages and technologies I have worked with and continue to explore.",nickTitle:"My nicknames",nickSub:"Nicknames I have used across different platforms.",projectsTitle:"My projects",projectsSub:"Developments, experiments, and ideas. More projects will appear here soon.",noban:"A utility for convenient access to websites that may be unavailable on certain networks. Coming to GitHub soon.",soon:"◉ COMING SOON",placeholder:"Project information will be published later.",gamesTitle:"Favorite games",gamesSub:"Games I enjoy playing.",contactTitle:"Let's connect.",contactSub:"My profiles and platforms where you can follow projects and updates."}
-};
-let language="ru";document.getElementById("lang").addEventListener("click",()=>{language=language==="ru"?"en":"ru";document.documentElement.lang=language;document.getElementById("lang").textContent=language==="ru"?"EN":"RU";document.querySelectorAll("[data-t]").forEach(el=>{let k=el.dataset.t;if(dict[language][k])el.textContent=dict[language][k]})});
-const menu=document.getElementById("menu"),links=document.getElementById("navLinks");menu.addEventListener("click",()=>{links.classList.toggle("open");menu.textContent=links.classList.contains("open")?"✕":"☰"});links.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{links.classList.remove("open");menu.textContent="☰"}));
-document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");document.querySelectorAll(".achievement").forEach(c=>c.hidden=b.dataset.filter!=="all"&&c.dataset.category!==b.dataset.filter)}));
-const observer=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("visible");observer.unobserve(e.target)}}),{threshold:.08});document.querySelectorAll(".reveal").forEach(e=>observer.observe(e));
-const topBtn=document.getElementById("top");window.addEventListener("scroll",()=>topBtn.classList.toggle("show",scrollY>450));topBtn.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));
-const sectionObserver=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)document.querySelectorAll(".nav-links a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+e.target.id))}),{rootMargin:"-30% 0px -60% 0px"});document.querySelectorAll("main section").forEach(s=>sectionObserver.observe(s));
-document.getElementById("discord").addEventListener("click",async()=>{try{await navigator.clipboard.writeText("voanechay_");document.getElementById("discord").lastChild.textContent=" Copied!"}catch(e){document.getElementById("discord").lastChild.textContent=" voanechay_" }});
-</script></body></html>
+<script src="script.js"></script>
+</body></html>
