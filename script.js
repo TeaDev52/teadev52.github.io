@@ -146,3 +146,78 @@ loadVersion(); loadGitHubData();
     art.style.marginTop = '0px';
   });
 })();
+
+// Interactive background particles: points gently brighten around the pointer.
+(() => {
+  const canvas = document.getElementById('particleCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let width = 0, height = 0, dpr = 1, points = [], frame = 0;
+  const pointer = { x: -1000, y: -1000, active: false };
+
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = Math.round(width * dpr);
+    canvas.height = Math.round(height * dpr);
+    canvas.style.width = width + 'px';
+    canvas.style.height = height + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const gap = width < 700 ? 31 : 27;
+    points = [];
+    for (let y = 18; y < height; y += gap) {
+      for (let x = 16; x < width; x += gap) {
+        points.push({
+          x: x + (Math.random() - 0.5) * 8,
+          y: y + (Math.random() - 0.5) * 8,
+          phase: Math.random() * Math.PI * 2,
+          glow: 0
+        });
+      }
+    }
+    draw(0);
+  }
+
+  function draw(time) {
+    ctx.clearRect(0, 0, width, height);
+    for (const point of points) {
+      const distance = pointer.active
+        ? Math.hypot(pointer.x - point.x, pointer.y - point.y)
+        : 9999;
+      const target = Math.max(0, 1 - distance / 145);
+      point.glow += (target - point.glow) * (reduceMotion ? 0.12 : 0.075);
+      const pulse = reduceMotion ? 0 : (Math.sin(time * 0.00055 + point.phase) + 1) * 0.012;
+      const alpha = 0.10 + pulse + point.glow * 0.58;
+      const radius = 1.05 + point.glow * 1.15;
+
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(196, 165, 255, ${alpha})`;
+      ctx.fill();
+
+      if (point.glow > 0.12) {
+        ctx.beginPath();
+        ctx.arc(point.x, point.y, radius * 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(166, 125, 255, ${point.glow * 0.045})`;
+        ctx.fill();
+      }
+    }
+    if (!reduceMotion) frame = requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize, { passive: true });
+  window.addEventListener('pointermove', event => {
+    pointer.x = event.clientX;
+    pointer.y = event.clientY;
+    pointer.active = true;
+  }, { passive: true });
+  window.addEventListener('pointerleave', () => { pointer.active = false; }, { passive: true });
+  resize();
+  if (!reduceMotion) {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(draw);
+  }
+})();
