@@ -2,7 +2,7 @@ const OWNER = "voanechay42";
 const REPO = "NoBan";
 const API = `https://api.github.com/repos/${OWNER}/${REPO}`;
 const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
-const VERSION_URL = "https://raw.githubusercontent.com/voanechay42/NoBan/main/service/version.txt";
+const VERSION_URL = "https://raw.githubusercontent.com/voanechay42/NoBan/refs/heads/main/service/version.txt";
 const $ = (id) => document.getElementById(id);
 let releases = [];
 
