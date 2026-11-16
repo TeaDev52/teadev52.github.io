@@ -161,4 +161,30 @@ $("supportForm").addEventListener("submit", event => {
 });
 
 $("year").textContent = new Date().getFullYear();
+
+// Fetch the current NoBan version from the project's version.txt file.
+const VERSION_URL = "https://raw.githubusercontent.com/voanechay42/NoBan/refs/heads/main/service/version.txt";
+async function loadProjectVersion() {
+  const versionElement = $("siteVersion");
+  if (!versionElement) return;
+  try {
+    const response = await fetch(VERSION_URL, { cache: "no-store" });
+    if (!response.ok) throw new Error(`Version file returned ${response.status}`);
+    let version = (await response.text()).trim();
+    version = version.replace(/^v/i, "").trim();
+    if (!version || version.length > 40 || /[\r\n<>]/.test(version)) {
+      throw new Error("Invalid version value");
+    }
+    versionElement.textContent = `v${version}`;
+    versionElement.title = `NoBan version ${version}`;
+    document.title = `NoBan v${version} — voanechay`;
+  } catch (error) {
+    console.warn("Could not load NoBan version:", error);
+    versionElement.textContent = "";
+    versionElement.title = "Версия временно недоступна";
+    document.title = "NoBan — voanechay";
+  }
+}
+
 loadGitHubData();
+loadProjectVersion();
