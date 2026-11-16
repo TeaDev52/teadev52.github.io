@@ -6,15 +6,14 @@
   <meta name="theme-color" content="#07070b">
   <meta name="description" content="NoBan — сетевой инструмент для Windows, помогающий восстанавливать доступ к сайтам и сервисам при сетевых ограничениях.">
   <title>NoBan v8.0 — voanechay</title>
-  <link rel="icon" href="noban-32.png" type="image/png" sizes="32x32">
-  <link rel="apple-touch-icon" href="noban-32.png">
+  <link rel="icon" href="https://github.com/voanechay42.png" type="image/png">
+  <link rel="apple-touch-icon" href="https://github.com/voanechay42.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;650;700;750;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <canvas id="particleCanvas" aria-hidden="true"></canvas>
   <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div><div class="grain"></div>
   <header class="topbar">
     <a class="brand" href="#top" aria-label="NoBan — на главную">
@@ -80,7 +79,9 @@
           <g class="orbit-core">
             <rect x="220" y="130" width="180" height="180" rx="43" fill="#a17be9" opacity=".11" filter="url(#softGlow)"/>
             <rect x="237" y="147" width="146" height="146" rx="34" fill="#17131f" stroke="#a98be5" stroke-opacity=".35" stroke-width="1.5"/>
-            <image href="assets/noban.png" x="255" y="165" width="110" height="110" preserveAspectRatio="xMidYMid meet"/>
+            <rect x="255" y="165" width="110" height="110" rx="25" fill="#050507" stroke="#ffffff" stroke-opacity=".08"/>
+            <path d="M274 239l18-44c2-5 8-6 11-1l13 25 20-27c4-5 12-1 10 5l-19 46c-2 5-8 6-11 1l-14-25-17 27c-4 6-14 1-11-7z" fill="url(#markGradient)"/>
+            <path d="M274 239l18-44c2-5 8-6 11-1l13 25 20-27" fill="none" stroke="#f6eaff" stroke-opacity=".65" stroke-width="2" stroke-linecap="round"/>
           </g>
         </svg>
       </div>
@@ -89,6 +90,8 @@
     <div class="content-layout">
       <div class="content-main">
         <section class="tab-panel active" id="descriptionPanel">
+          <div class="section-heading"><div><span class="section-kicker">NO BAN / DOCUMENTATION</span><h2>Описание</h2></div><span class="heading-icon">✦</span></div>
+
           <article class="doc-card overview-card">
             <div class="doc-card-heading"><span class="doc-icon purple">⌘</span><h3>О программе</h3></div>
             <p><strong>NoBan — сетевой инструмент для Windows</strong>, предназначенный для восстановления доступа к сайтам и сервисам, ограниченным сетевой фильтрацией. В основе проекта используются DPI-обход, наборы правил, профили запуска и сетевой драйвер WinDivert.</p>
@@ -124,7 +127,7 @@
             </div>
             <div class="file-group">
               <div class="file-group-title"><span class="file-folder">▰</span> <code>autoload\</code> — профили автозапуска</div>
-              <div class="file-row"><code>*.bat</code><div><b>Файлы автозагрузки</b><p>Профили запуска, подготовленные для установки NoBan в автозагрузку Windows. При настройке службы пользователь выбирает подходящий файл, а панель управления использует его параметры для запуска.</p></div></div>
+              <div class="file-row"><code>NoBan (A).bat</code> – <code>NoBan (R).bat</code><div><b>Профили для службы Windows</b><p>18 вариантов запуска, подготовленных для установки в автозагрузку. Служебный скрипт использует выбранный профиль при создании службы NoBan.</p></div></div>
             </div>
             <p class="archive-note">Состав описан по предоставленной сборке NoBan v8.0. Если в следующих версиях появятся новые папки или компоненты, документация будет обновлена.</p>
           </article>

@@ -98,7 +98,7 @@ function moveIndicator() {
   if (!nav || !active || !indicator) return;
   const navRect = nav.getBoundingClientRect(), itemRect = active.getBoundingClientRect();
   indicator.style.width = `${itemRect.width}px`;
-  indicator.style.transform = `translateX(${itemRect.left - navRect.left - 4}px)`;
+  indicator.style.transform = `translateX(${itemRect.left - navRect.left}px)`;
 }
 function activateTab(name) {
   document.querySelectorAll(".nav-item").forEach(b => b.classList.toggle("active",b.dataset.tab===name));
@@ -112,7 +112,6 @@ function activateTab(name) {
 document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>activateTab(b.dataset.tab)));
 window.addEventListener("resize",moveIndicator);
 window.addEventListener("load",moveIndicator);
-if (document.fonts?.ready) document.fonts.ready.then(() => requestAnimationFrame(moveIndicator));
 
 const downloadButton = $("downloadButton"), versionMenu = $("versionMenu");
 downloadButton.addEventListener("click",()=>{if(downloadButton.disabled)return;versionMenu.hidden=!versionMenu.hidden;downloadButton.setAttribute("aria-expanded",String(!versionMenu.hidden));});
@@ -138,12 +137,12 @@ loadVersion(); loadGitHubData();
     frame = requestAnimationFrame(() => {
       const x = (event.clientX / window.innerWidth - .5) * 10;
       const y = (event.clientY / window.innerHeight - .5) * 8;
-      art.style.setProperty('--parallax-x', `${x}px`);
-      art.style.setProperty('--parallax-y', `${y}px`);
+      art.style.marginLeft = `${x}px`;
+      art.style.marginTop = `${y}px`;
     });
   }, { passive: true });
   window.addEventListener('pointerleave', () => {
-    art.style.setProperty('--parallax-x', '0px');
-    art.style.setProperty('--parallax-y', '0px');
+    art.style.marginLeft = '0px';
+    art.style.marginTop = '0px';
   });
 })();
