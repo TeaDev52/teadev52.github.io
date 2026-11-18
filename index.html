@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#07070b">
   <meta name="description" content="NoBan — сетевой инструмент для Windows, помогающий восстанавливать доступ к сайтам и сервисам при сетевых ограничениях.">
-  <title>NoBan v8.0 — voanechay</title>
+  <title>NoBan v8.1 — voanechay</title>
   <link rel="icon" href="noban-32.png" type="image/png" sizes="32x32">
   <link rel="apple-touch-icon" href="noban-32.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,7 +19,7 @@
   <header class="topbar">
     <a class="brand" href="#top" aria-label="NoBan — на главную">
       <img src="assets/noban.png" alt="" class="brand-logo" onerror="this.style.display='none'">
-      <span>NoBan</span><span class="brand-version" id="siteVersion">v8.0</span>
+      <span>NoBan</span><span class="brand-version" id="siteVersion">v8.1</span>
     </a>
     <nav class="main-nav" id="mainNav" aria-label="Навигация по проекту">
       <span class="nav-indicator" id="navIndicator" aria-hidden="true"></span>
@@ -60,7 +60,7 @@
           <div class="stat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v3h16v-3"/></svg><strong id="downloadCount">—</strong><span>скачиваний</span></div>
           <i></i>
           <div class="stat"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/></svg><strong id="starCount">—</strong><span>звёзд</span></div>
-          <i></i><div class="latest-version">Последняя версия <b id="latestVersion">v8.0</b></div>
+          <i></i><div class="latest-version">Последняя версия <b id="latestVersion">v8.1</b></div>
         </div>
       </div>
       <div class="hero-art" aria-hidden="true">
@@ -98,7 +98,7 @@
 
           <article class="doc-card file-doc">
             <div class="doc-card-heading"><span class="doc-icon blue">▤</span><h3>Описание файлов</h3></div>
-            <p class="card-lead">Что находится в папке NoBan v8.0 и за что отвечает каждый компонент.</p>
+            <p class="card-lead">Что находится в папке NoBan v8.1 и за что отвечает каждый компонент.</p>
             <div class="file-group">
               <div class="file-group-title"><span class="file-folder">▰</span> Корневая папка</div>
               <div class="file-row"><code>NoBan.bat</code><div><b>Главный лаунчер</b><p>Открывает меню ручного запуска и позволяет выбрать один из 18 профилей — от A до R. Перед запуском запрашивает права администратора, проверяет флаг игрового фильтра и запускает <code>NoBan.exe</code> с параметрами выбранного профиля.</p></div></div>
@@ -142,6 +142,7 @@
               <div class="function-item"><span>07</span><div><b>Убрать автозагрузку / Остановить NoBan</b><p>Останавливает и удаляет службу NoBan, а также завершает работу связанных компонентов.</p></div></div>
               <div class="function-item"><span>08</span><div><b>Разблокировка через Hosts</b><p>Добавляет подготовленные записи для Spotify, Telegram, IntelliJ или Roblox в системный файл <code>hosts</code> и сбрасывает DNS-кэш.</p></div></div>
               <div class="function-item"><span>09</span><div><b>Сбросить списки</b><p>Загружает оригинальные версии <code>white-list.txt</code>, <code>black-list.txt</code>, <code>ipset-all.txt</code> и <code>ipset-exclude.txt</code> из репозитория.</p></div></div>
+              <div class="function-item"><span>10</span><div><b>Добавление доменов</b><p>Добавление доменов — функция для быстрого добавления доменов популярных платформ в <code>white-list.txt<code> или <code>black-list.txt<code>.</p></div></div>
             </div>
           </article>
 
