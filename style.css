@@ -34,3 +34,44 @@
 .topbar{position:sticky;top:0;z-index:20}
 .page{position:relative;z-index:1}
 .grain{z-index:0}
+
+
+/* NoBan site refinements */
+.top-actions{margin-left:auto;display:flex;align-items:center;gap:9px;flex-shrink:0}
+.top-actions .top-github{margin-left:0}
+.top-support{display:flex;align-items:center;gap:8px;padding:10px 14px;border:1px solid #a78bfa45;border-radius:12px;background:linear-gradient(120deg,#a78bfa18,#8b72df0b);color:#e4d8ff;font-size:13px;font-weight:750;transition:.22s}
+.top-support:hover{transform:translateY(-2px);border-color:#c1a4ff9c;background:#a78bfa24;box-shadow:0 8px 24px #8b5cf622}
+.top-support span{font-size:17px;line-height:1;color:#d0b5ff}
+.hero-title-row{margin-top:0}
+#changelogPanel,#versionsPanel,#helpPanel{padding-top:2px}
+.file-tree-group{position:relative;margin-left:2px;padding:17px 0 12px 19px;border-top:1px solid #ffffff12}
+.file-tree-group:before{content:"";position:absolute;left:5px;top:42px;bottom:25px;width:1px;background:linear-gradient(#a78bfa70,#a78bfa12)}
+.file-tree-group .file-group-title{position:relative;margin:0 0 11px -19px;padding:9px 12px;border:1px solid #a78bfa24;border-radius:11px;background:linear-gradient(100deg,#a78bfa12,#ffffff03);font-size:14px}
+.file-tree-group .file-group-title:before{content:"";width:7px;height:7px;border-radius:2px;background:#b99aff;box-shadow:0 0 12px #b99aff77}
+.file-tree-item{position:relative;grid-template-columns:minmax(145px,205px) minmax(0,1fr);gap:15px;margin-left:0;padding:13px 13px 13px 17px;border:1px solid transparent;border-radius:11px;transition:background .2s,border-color .2s}
+.file-tree-item:before{content:"";position:absolute;left:-14px;top:24px;width:13px;height:1px;background:#a78bfa55}
+.file-tree-item:hover{border-color:#a78bfa24;background:#a78bfa08}
+.file-tree-item>code{padding:5px 8px;border:1px solid #a78bfa22;border-radius:7px;background:#a78bfa0c;color:#d9caff}
+.file-tree-item>div>b{font-size:14px}
+.file-tree-item>div>p{font-size:13px;line-height:1.65}
+.archive-note{margin-left:2px}
+.release-notes p{margin:8px 0}
+.release-notes p:first-child{margin-top:0}
+.release-notes em{color:#e2d7f5}
+.release-notes strong{color:#f3edfc;font-weight:800}
+.asset-link{min-height:46px}
+.asset-link b{font-size:13px;font-weight:750}
+.asset-link .asset-download-icon{display:grid;place-items:center;width:25px;height:25px;border:1px solid #b18cff38;border-radius:8px;background:#a78bfa14;color:#d6c3ff;font-size:17px}
+.issue-type-picker{position:relative}
+.issue-type-trigger{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:48px;padding:12px 14px;border:1px solid #ffffff17;border-radius:11px;background:#09090f;color:#f3edf9;text-align:left;font-size:15px;cursor:pointer;transition:border-color .2s,box-shadow .2s,background .2s}
+.issue-type-trigger:hover,.issue-type-picker.is-open .issue-type-trigger{border-color:#a78bfa88;background:#11101a;box-shadow:0 0 0 3px #a78bfa12}
+.issue-type-trigger svg{width:19px;height:19px;fill:none;stroke:#bda6ec;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .22s}
+.issue-type-picker.is-open .issue-type-trigger svg{transform:rotate(180deg)}
+.issue-type-options{display:grid;gap:5px;margin-top:7px;padding:7px;border:1px solid #a78bfa42;border-radius:12px;background:linear-gradient(145deg,#191622,#100f17);box-shadow:0 16px 35px #0008;transform-origin:top;animation:issueOptionsIn .2s ease both}
+.issue-type-options[hidden]{display:none}
+.issue-type-option{width:100%;padding:11px 12px;border:1px solid transparent;border-radius:8px;background:transparent;color:#c9c2d4;text-align:left;font-size:14px;cursor:pointer;transition:.18s}
+.issue-type-option:hover{border-color:#a78bfa25;background:#a78bfa12;color:#fff}
+.issue-type-option.selected{border-color:#a78bfa38;background:#a78bfa18;color:#e5d8ff}
+@keyframes issueOptionsIn{from{opacity:0;transform:translateY(-7px) scaleY(.96)}to{opacity:1;transform:translateY(0) scaleY(1)}}
+@media(max-width:800px){.top-actions{margin-left:0;gap:7px}.top-actions .top-github{margin-left:0}.top-support{padding:8px 10px}.file-tree-item{grid-template-columns:minmax(120px,170px) minmax(0,1fr)}}
+@media(max-width:560px){.top-actions{margin-left:auto}.top-support{padding:8px 9px;font-size:12px}.top-support span{font-size:15px}.top-actions .top-github{padding:8px}.file-tree-group{padding-left:16px}.file-tree-group .file-group-title{margin-left:-16px}.file-tree-item{grid-template-columns:1fr;gap:7px;padding:11px 8px 11px 12px}.file-tree-item:before{left:-11px;width:10px}.asset-link small{font-size:11px}}

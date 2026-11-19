@@ -2,7 +2,7 @@ const OWNER = "voanechay42";
 const REPO = "NoBan";
 const API = `https://api.github.com/repos/${OWNER}/${REPO}`;
 const REPO_URL = `https://github.com/${OWNER}/${REPO}`;
-const VERSION_URL = "https://raw.githubusercontent.com/voanechay42/NoBan/main/service/version.txt";
+const VERSION_URL = "https://raw.githubusercontent.com/voanechay42/NoBan/refs/heads/main/service/version.txt";
 const $ = (id) => document.getElementById(id);
 let releases = [];
 
@@ -10,37 +10,60 @@ function escapeHTML(value = "") { return String(value).replace(/[&<>"']/g, c => 
 function formatNumber(value) { return new Intl.NumberFormat("ru-RU").format(value || 0); }
 function formatDate(value) { if (!value) return "Дата не указана"; return new Intl.DateTimeFormat("ru-RU", {day:"numeric",month:"long",year:"numeric"}).format(new Date(value)); }
 function safeURL(url) { try { const u = new URL(url); return ["https:","http:"].includes(u.protocol) ? u.href : "#"; } catch { return "#"; } }
+function parseInlineMarkdown(value = "") {
+  // Escape source text first; placeholders keep formatting inside code spans literal.
+  let text = escapeHTML(value);
+  const code = [];
+  text = text.replace(/`([^`]+)`/g, (_, content) => {
+    const key = `@@CODE${code.length}@@`;
+    code.push(`<code>${content}</code>`);
+    return key;
+  });
+  text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  text = text.replace(/(^|[^\w])_([^_\n]+)_(?![\w])/g, '$1<em>$2</em>');
+  text = text.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
+  text = text.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+  text = text.replace(/@@CODE(\d+)@@/g, (_, index) => code[Number(index)] || '');
+  return text;
+}
 function parseReleaseBody(markdown = "") {
-  return escapeHTML(markdown)
-    .replace(/^###?\s+(.+)$/gm, '<h4>$1</h4>')
-    .replace(/^[-*]\s+(.+)$/gm, '<li>$1</li>')
-    .replace(/`([^`]+)`/g, '<code>$1</code>')
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
-    .replace(/(?:\r?\n){2,}/g, '</p><p>').replace(/\r?\n/g, '<br>');
+  const lines = String(markdown).replace(/\r/g, "").split("\n");
+  const blocks = [];
+  let paragraph = [], list = [];
+  const flushParagraph = () => {
+    if (paragraph.length) { blocks.push(`<p>${paragraph.map(parseInlineMarkdown).join('<br>')}</p>`); paragraph = []; }
+  };
+  const flushList = () => {
+    if (list.length) { blocks.push(`<ul>${list.map(item => `<li>${parseInlineMarkdown(item)}</li>`).join('')}</ul>`); list = []; }
+  };
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (!trimmed) { flushParagraph(); flushList(); continue; }
+    const heading = trimmed.match(/^#{1,3}\s+(.+)$/);
+    const item = trimmed.match(/^[-*+]\s+(.+)$/);
+    if (heading) { flushParagraph(); flushList(); blocks.push(`<h4>${parseInlineMarkdown(heading[1])}</h4>`); }
+    else if (item) { flushParagraph(); list.push(item[1]); }
+    else { flushList(); paragraph.push(trimmed); }
+  }
+  flushParagraph(); flushList();
+  return blocks.join('');
 }
 function renderReleaseNotes(body) {
   if (!body || !body.trim()) return '<p class="release-empty-note">В этом релизе нет отдельного описания изменений.</p>';
-  let html = parseReleaseBody(body).replace(/(?:<li>.*?<\/li>\s*)+/gs, m => `<ul>${m}</ul>`);
-  return `<div class="release-notes"><p>${html}</p></div>`;
+  return `<div class="release-notes">${parseReleaseBody(body)}</div>`;
 }
 function releaseAssets(r) { return Array.isArray(r.assets) ? r.assets : []; }
 function releaseDownloads(r) { return releaseAssets(r).reduce((n,a) => n + (a.download_count || 0), 0); }
 function releaseLabel(r) { return r.name || r.tag_name || "Без названия"; }
 function renderVersionRows() {
-  const dropdown = $("versionList"), archive = $("fullVersionList");
+  const archive = $("fullVersionList");
   if (!releases.length) {
-    const empty = '<div class="empty-state"><span>✧</span><b>Релизы пока не опубликованы</b><p>Когда в GitHub появится релиз с файлами, он отобразится здесь.</p></div>';
-    dropdown.innerHTML = empty; archive.innerHTML = empty; $("downloadLabel").textContent = "Скоро"; $("downloadButton").disabled = true; return;
+    archive.innerHTML = '<div class="empty-state"><span>✧</span><b>Релизы пока не опубликованы</b><p>Когда в GitHub появится релиз с файлами, он отобразится здесь.</p></div>';
+    return;
   }
-  $("downloadLabel").textContent = "Скачать"; $("downloadButton").disabled = false;
-  dropdown.innerHTML = releases.slice(0,10).map((r,i) => {
-    const file = releaseAssets(r)[0], latest = i === 0 && !r.prerelease;
-    return `<a class="version-option ${latest ? "is-latest" : ""}" href="${safeURL(file?.browser_download_url || r.html_url)}" target="_blank" rel="noopener noreferrer"><span><b>${escapeHTML(releaseLabel(r))}</b><small>${releaseAssets(r).length ? `${releaseAssets(r).length} файл(а)` : "Страница релиза"}</small></span>${latest ? '<em>АКТУАЛЬНАЯ</em>' : '<span class="option-arrow">↗</span>'}</a>`;
-  }).join("");
   archive.innerHTML = releases.map((r,i) => {
     const latest = i === 0 && !r.prerelease;
-    const files = releaseAssets(r).length ? releaseAssets(r).map(a => `<a class="asset-link" href="${safeURL(a.browser_download_url)}" target="_blank" rel="noopener noreferrer"><span>↓</span>${escapeHTML(a.name)}<small>${formatNumber(a.download_count)} скачиваний</small></a>`).join("") : '<div class="no-assets">Файлы к этому релизу не прикреплены.</div>';
+    const files = releaseAssets(r).length ? releaseAssets(r).map(a => `<a class="asset-link" href="${safeURL(a.browser_download_url)}" target="_blank" rel="noopener noreferrer"><span class="asset-download-icon">↓</span><b>Скачать</b><small>${formatNumber(a.download_count)} скачиваний</small></a>`).join("") : '<div class="no-assets">Файлы к этому релизу не прикреплены.</div>';
     return `<article class="release-card ${latest ? "release-latest" : ""}"><div class="release-top"><div><div class="release-version-line"><h3>${escapeHTML(releaseLabel(r))}</h3>${latest ? '<span class="latest-badge">ПОСЛЕДНЯЯ</span>' : r.prerelease ? '<span class="latest-badge">PRE-RELEASE</span>' : ''}</div><p>${formatDate(r.published_at)} · ${formatNumber(releaseDownloads(r))} скачиваний</p></div><a class="release-open" href="${safeURL(r.html_url)}" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div><div class="release-assets">${files}</div></article>`;
   }).join("");
 }
@@ -90,7 +113,7 @@ async function loadGitHubData() {
     console.warn("GitHub data unavailable:",error);
     $("starCount").textContent = "—"; $("downloadCount").textContent = "—";
     const empty = '<div class="empty-state"><b>Не удалось загрузить данные GitHub</b><p>Проверь подключение или открой репозиторий напрямую.</p></div>';
-    $("versionList").innerHTML = empty; $("fullVersionList").innerHTML = empty; $("changelogList").innerHTML = empty;
+    $("fullVersionList").innerHTML = empty; $("changelogList").innerHTML = empty;
   }
 }
 function moveIndicator() {
@@ -113,10 +136,29 @@ document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()
 window.addEventListener("resize",moveIndicator);
 window.addEventListener("load",moveIndicator);
 
-const downloadButton = $("downloadButton"), versionMenu = $("versionMenu");
-downloadButton.addEventListener("click",()=>{if(downloadButton.disabled)return;versionMenu.hidden=!versionMenu.hidden;downloadButton.setAttribute("aria-expanded",String(!versionMenu.hidden));});
-document.addEventListener("click",e=>{if(!e.target.closest(".download-wrap")){versionMenu.hidden=true;downloadButton.setAttribute("aria-expanded","false");}});
-document.addEventListener("keydown",e=>{if(e.key==="Escape"){versionMenu.hidden=true;downloadButton.setAttribute("aria-expanded","false");}});
+// The main download action opens the Versions tab; downloads themselves live there.
+const issueTypePicker = $("issueTypePicker");
+const issueTypeButton = $("issueTypeButton");
+const issueTypeOptions = $("issueTypeOptions");
+function closeIssueTypePicker() {
+  issueTypeOptions.hidden = true;
+  issueTypeButton.setAttribute("aria-expanded", "false");
+  issueTypePicker.classList.remove("is-open");
+}
+issueTypeButton.addEventListener("click", () => {
+  const open = issueTypeOptions.hidden;
+  issueTypeOptions.hidden = !open;
+  issueTypeButton.setAttribute("aria-expanded", String(open));
+  issueTypePicker.classList.toggle("is-open", open);
+});
+issueTypeOptions.querySelectorAll(".issue-type-option").forEach(option => option.addEventListener("click", () => {
+  $("issueType").value = option.dataset.value;
+  $("issueTypeLabel").textContent = option.textContent;
+  issueTypeOptions.querySelectorAll(".issue-type-option").forEach(item => item.classList.toggle("selected", item === option));
+  closeIssueTypePicker();
+}));
+document.addEventListener("click", event => { if (!issueTypePicker.contains(event.target)) closeIssueTypePicker(); });
+document.addEventListener("keydown", event => { if (event.key === "Escape") closeIssueTypePicker(); });
 $("supportForm").addEventListener("submit",e=>{
   e.preventDefault(); const title=$("issueTitle").value.trim(), type=$("issueType").value, body=$("issueBody").value.trim(); if(!title||!body)return;
   const issueTitle=`[${type}] ${title}`, issueBody=`${body}\n\n---\nОтправлено через сайт NoBan.`;
