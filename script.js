@@ -132,6 +132,10 @@ function activateTab(name) {
   });
   const heroActions = document.querySelector(".hero-actions");
   if (heroActions) heroActions.hidden = name !== "description";
+  const sidebar = document.querySelector(".sidebar");
+  const layout = document.querySelector(".content-layout");
+  if (sidebar) sidebar.hidden = name !== "description";
+  if (layout) layout.classList.toggle("author-hidden", name !== "description");
   requestAnimationFrame(moveIndicator);
 }
 document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>activateTab(b.dataset.tab)));
@@ -167,20 +171,6 @@ $("supportForm").addEventListener("submit",e=>{
   const url=`${REPO_URL}/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
   window.open(url,"_blank","noopener,noreferrer");
 });
-const themeSelect = $("themeSelect");
-const savedTheme = (() => { try { return localStorage.getItem("noban-theme"); } catch { return null; } })();
-function applyTheme(theme) {
-  const allowed = ["purple", "blue", "green", "rose"];
-  const selected = allowed.includes(theme) ? theme : "purple";
-  document.documentElement.dataset.theme = selected;
-  if (themeSelect) themeSelect.value = selected;
-  try { localStorage.setItem("noban-theme", selected); } catch {}
-}
-if (themeSelect) {
-  applyTheme(savedTheme || "purple");
-  themeSelect.addEventListener("change", () => applyTheme(themeSelect.value));
-}
-
 $("year").textContent=new Date().getFullYear();
 loadVersion(); loadGitHubData();
 
