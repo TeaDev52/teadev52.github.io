@@ -19,7 +19,7 @@ function parseInlineMarkdown(value = "") {
     code.push(`<code>${content}</code>`);
     return key;
   });
-  text = text.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+  text = text.replace(/\*\*([\s\S]+?)\*\*/g, '<strong>$1</strong>');
   text = text.replace(/(^|[^\w])_([^_\n]+)_(?![\w])/g, '$1<em>$2</em>');
   text = text.replace(/\*([^*\n]+)\*/g, '<em>$1</em>');
   text = text.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
@@ -167,6 +167,20 @@ $("supportForm").addEventListener("submit",e=>{
   const url=`${REPO_URL}/issues/new?title=${encodeURIComponent(issueTitle)}&body=${encodeURIComponent(issueBody)}`;
   window.open(url,"_blank","noopener,noreferrer");
 });
+const themeSelect = $("themeSelect");
+const savedTheme = (() => { try { return localStorage.getItem("noban-theme"); } catch { return null; } })();
+function applyTheme(theme) {
+  const allowed = ["purple", "blue", "green", "rose"];
+  const selected = allowed.includes(theme) ? theme : "purple";
+  document.documentElement.dataset.theme = selected;
+  if (themeSelect) themeSelect.value = selected;
+  try { localStorage.setItem("noban-theme", selected); } catch {}
+}
+if (themeSelect) {
+  applyTheme(savedTheme || "purple");
+  themeSelect.addEventListener("change", () => applyTheme(themeSelect.value));
+}
+
 $("year").textContent=new Date().getFullYear();
 loadVersion(); loadGitHubData();
 
