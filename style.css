@@ -75,3 +75,19 @@
 @keyframes issueOptionsIn{from{opacity:0;transform:translateY(-7px) scaleY(.96)}to{opacity:1;transform:translateY(0) scaleY(1)}}
 @media(max-width:800px){.top-actions{margin-left:0;gap:7px}.top-actions .top-github{margin-left:0}.top-support{padding:8px 10px}.file-tree-item{grid-template-columns:minmax(120px,170px) minmax(0,1fr)}}
 @media(max-width:560px){.top-actions{margin-left:auto}.top-support{padding:8px 9px;font-size:12px}.top-support span{font-size:15px}.top-actions .top-github{padding:8px}.file-tree-group{padding-left:16px}.file-tree-group .file-group-title{margin-left:-16px}.file-tree-item{grid-template-columns:1fr;gap:7px;padding:11px 8px 11px 12px}.file-tree-item:before{left:-11px;width:10px}.asset-link small{font-size:11px}}
+
+
+/* Layout polish: restore the animated orbital artwork and stable author panel. */
+.hero{overflow:hidden}
+.hero-copy{max-width:61%}
+.hero-art{top:50%;right:-1%;width:min(47%,610px);opacity:1;transform:translateY(-50%);z-index:1;pointer-events:none}
+.orbit-scene{display:block;width:100%;height:auto;overflow:visible;filter:drop-shadow(0 18px 42px #0009)}
+.sidebar{position:sticky;top:98px;align-self:start;z-index:4}
+.file-tree-group{padding:15px 0 10px 17px}
+.file-tree-group .file-group-title{display:flex;flex-wrap:wrap;align-items:center;min-width:0;line-height:1.5}
+.file-tree-item{grid-template-columns:minmax(130px,180px) minmax(0,1fr);align-items:start;gap:12px;margin:5px 0;padding:12px;border:1px solid #ffffff0b;border-radius:12px;background:linear-gradient(110deg,#ffffff06,#ffffff02)}
+.file-tree-item>div{min-width:0}
+.file-tree-item>div>p{overflow-wrap:anywhere}
+@media(max-width:1050px){.hero-copy{max-width:66%}.hero-art{right:-3%;width:44%;opacity:.9}}
+@media(max-width:800px){.hero{overflow:hidden}.hero-copy{max-width:100%}.hero-art{right:-12%;top:17%;width:58%;opacity:.24}.sidebar{position:sticky;top:90px;grid-row:1}.file-tree-item{grid-template-columns:minmax(0,1fr);gap:7px;padding:11px 12px}.file-tree-item:before{left:-12px;width:11px}.file-tree-group .file-group-title{margin-left:-17px}}
+@media(max-width:560px){.hero-art{right:-19%;top:18%;width:70%;opacity:.2}.sidebar{position:sticky;top:84px}.file-tree-group{padding-left:15px}.file-tree-group .file-group-title{margin-left:-15px;padding:9px 10px;font-size:13px}.file-tree-item{grid-template-columns:minmax(0,1fr);gap:6px;margin:6px 0;padding:10px 9px}.file-tree-item:before{left:-10px;width:9px}.file-tree-item>code{max-width:100%;white-space:normal;overflow-wrap:anywhere}.file-tree-item>div>p{font-size:13px;line-height:1.65}}

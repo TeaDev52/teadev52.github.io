@@ -130,6 +130,8 @@ function activateTab(name) {
     panel.hidden = !active; panel.classList.toggle("active",active);
     if (active) { panel.classList.remove("active"); void panel.offsetWidth; panel.classList.add("active"); }
   });
+  const heroActions = document.querySelector(".hero-actions");
+  if (heroActions) heroActions.hidden = name !== "description";
   requestAnimationFrame(moveIndicator);
 }
 document.querySelectorAll("[data-tab]").forEach(b=>b.addEventListener("click",()=>activateTab(b.dataset.tab)));
@@ -167,27 +169,6 @@ $("supportForm").addEventListener("submit",e=>{
 });
 $("year").textContent=new Date().getFullYear();
 loadVersion(); loadGitHubData();
-
-// Gentle pointer parallax for the SVG orbital artwork; all artwork remains in code.
-(() => {
-  const art = document.querySelector('.hero-art');
-  if (!art || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  let frame = 0;
-  window.addEventListener('pointermove', (event) => {
-    if (window.innerWidth < 801) return;
-    if (frame) cancelAnimationFrame(frame);
-    frame = requestAnimationFrame(() => {
-      const x = (event.clientX / window.innerWidth - .5) * 10;
-      const y = (event.clientY / window.innerHeight - .5) * 8;
-      art.style.marginLeft = `${x}px`;
-      art.style.marginTop = `${y}px`;
-    });
-  }, { passive: true });
-  window.addEventListener('pointerleave', () => {
-    art.style.marginLeft = '0px';
-    art.style.marginTop = '0px';
-  });
-})();
 
 // Interactive background particles: points gently brighten around the pointer.
 (() => {
